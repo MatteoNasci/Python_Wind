@@ -114,7 +114,8 @@ Bonus 1. Calculate the mean windspeed for each month in the dataset.  Treat
 
 def seventh_exercise(data, january_column=1, number_of_januaries=18):
     all_january = data[data[:, january_column] == 1, 3:]
-    all_january = numpy.reshape(all_january, (all_january.size // (31 * 12), 31 * 12))
+    all_january = numpy.reshape(
+        all_january, (all_january.size // (31 * 12), 31 * 12))
     return all_january.mean(axis=1)
 
 
