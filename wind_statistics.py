@@ -120,7 +120,9 @@ Bonus 2. Calculate the min, max and mean windspeeds and standard deviations of t
 
 
 def eighth_exercise(data):
-    return [second_exercise(week) for week in data[:52*7:7,:]]
+    first_weeks = data[:52 * 7,3:]
+    first_weeks.reshape(52, 12 * 7)
+    return [(week.min(), week.max(), week.mean(), week.std()) for week in first_weeks[range(52),:]]
 """
 Final boss: Calculate the mean windspeed for each month without using a for loop.
 (Hint: look at `searchsorted` and `add.reduceat`.)
