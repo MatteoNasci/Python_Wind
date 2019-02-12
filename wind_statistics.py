@@ -129,9 +129,6 @@ Bonus 2. Calculate the min, max and mean windspeeds and standard deviations of t
 def eighth_exercise(data):
     first_weeks = numpy.reshape(data[:52 * 7, 3:], (52, 12*7))
     return (first_weeks.min(axis=1), first_weeks.max(axis=1), first_weeks.mean(axis=1), first_weeks.std(axis=1))
-
-    #[(week.min(), week.max(), week.mean(), week.std()) for week in first_weeks[range(52),:]]
-    #(first_weeks.min(axis=1), first_weeks.max(axis=1), first_weeks.mean(axis=1), first_weeks.std(axis=1))
 """
 Final boss: Calculate the mean windspeed for each month without using a for loop.
 (Hint: look at `searchsorted` and `add.reduceat`.)
@@ -140,13 +137,6 @@ Final boss: Calculate the mean windspeed for each month without using a for loop
 
 def ninth_exercise(data):
     return 'ciao'  # [month.mean() from month in ]
-
-
-def get_month(data, start_index, month_number):
-    if month_number <= 0:
-        month_number = 0
-    elif month_number > 12:
-        month_number = 12
 
 
 if __name__ == '__main__':
