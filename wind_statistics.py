@@ -109,7 +109,7 @@ Bonus 1. Calculate the mean windspeed for each month in the dataset.  Treat
 
 def seventh_exercise(data,january_column=1, number_of_januaries=18):
     january_indices = data[:,january_column] == 1
-    all_january = data[january_indices,:]
+    all_january = data[january_indices,3:]
     return [windspeeds.mean() for windspeeds in all_january[range(number_of_januaries),:]]
 """
 Bonus 2. Calculate the min, max and mean windspeeds and standard deviations of the
@@ -120,7 +120,7 @@ Bonus 2. Calculate the min, max and mean windspeeds and standard deviations of t
 
 
 def eighth_exercise(data):
-    return 'ciao'
+    return [second_exercise(week) for week in data[:52*7:7,:]]
 """
 Final boss: Calculate the mean windspeed for each month without using a for loop.
 (Hint: look at `searchsorted` and `add.reduceat`.)
