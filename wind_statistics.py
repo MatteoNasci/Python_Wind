@@ -37,7 +37,7 @@ import pprint
 
 def read_data(fname):
     array = numpy.array(numpy.loadtxt(fname))
-    array.reshape(len(array) // 15, 15)
+    array.reshape(array.size // 15, 15)
     return array
 
 
@@ -95,9 +95,9 @@ def fifth_exercise(data):
 7. Find the average windspeed in January for each location.
 """
 
-
+#it is not specified if the exercise is referring to a single January or to all of them
 def sixth_exercise(data):
-    return data[:32:,3:].average(axis=0)
+    return numpy.average(data[:32:,3:],axis=0)
 
 """
 Bonus 1. Calculate the mean windspeed for each month in the dataset.  Treat
@@ -107,8 +107,10 @@ Bonus 1. Calculate the mean windspeed for each month in the dataset.  Treat
 """
 
 
-def seventh_exercise(data):
-    
+def seventh_exercise(data,january_column=1, number_of_januaries=18):
+    january_indices = data[:,january_column] == 1
+    all_january = data[january_indices,:]
+    return [windspeeds.mean() for windspeeds in all_january[range(number_of_januaries),:]]
 """
 Bonus 2. Calculate the min, max and mean windspeeds and standard deviations of the
    windspeeds across all locations for each week (assume that the first week
@@ -118,7 +120,7 @@ Bonus 2. Calculate the min, max and mean windspeeds and standard deviations of t
 
 
 def eighth_exercise(data):
-
+    return 'ciao'
 """
 Final boss: Calculate the mean windspeed for each month without using a for loop.
 (Hint: look at `searchsorted` and `add.reduceat`.)
@@ -126,17 +128,27 @@ Final boss: Calculate the mean windspeed for each month without using a for loop
 
 
 def ninth_exercise(data):
-
+    return 'ciao'
 
 if __name__ == '__main__':
     data = read_data('wind.data')
+    print("Data read:")
     pprint.pprint(data)
+    print("first_exercise:")
     pprint.pprint(first_exercise(data))
+    print("second_exercise:")
     pprint.pprint(second_exercise(data))
+    print("third_exercise:")
     pprint.pprint(third_exercise(data))
+    print("fourth_exercise:")
     pprint.pprint(fourth_exercise(data))
+    print("fifth_exercise:")
     pprint.pprint(fifth_exercise(data))
+    print("sixth_exercise:")
     pprint.pprint(sixth_exercise(data))
+    print("seventh_exercise:")
     pprint.pprint(seventh_exercise(data))
+    print("eighth_exercise:")
     pprint.pprint(eighth_exercise(data))
+    print("ninth_exercise:")
     pprint.pprint(ninth_exercise(data))
