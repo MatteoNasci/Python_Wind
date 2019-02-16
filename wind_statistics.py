@@ -104,6 +104,11 @@ def sixth_exercise(data):
     return numpy.average(data[:32:, 3:], axis=0)
 
 
+# this is for all januaries
+def sixth_exercise_revision(data):
+    return numpy.average((data[data[:, 1] == 1])[:, 3:], axis=0)
+
+
 """
 Bonus 1. Calculate the mean windspeed for each month in the dataset.  Treat
    January 1961 and January 1962 as *different* months. (hint: first find a
@@ -139,6 +144,12 @@ Final boss: Calculate the mean windspeed for each month without using a for loop
 
 
 def ninth_exercise(data):
+    #years = data[-1, 0] - data[0, 0] + 1
+    # numpy.add.reduceat()
+    # for i in range(years):
+    #    indices = numpy.searchsorted(
+    #        years, (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12))
+
     return 'ciao'  # [month.mean() from month in ]
 
 
@@ -158,6 +169,8 @@ if __name__ == '__main__':
     pprint.pprint(fifth_exercise(data))
     print("sixth_exercise:")
     pprint.pprint(sixth_exercise(data))
+    print("sixth_exercise_revision:")
+    pprint.pprint(sixth_exercise_revision(data))
     print("seventh_exercise:")
     pprint.pprint(seventh_exercise(data))
     print("eighth_exercise:")
