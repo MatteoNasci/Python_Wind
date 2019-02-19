@@ -92,6 +92,9 @@ def fourth_exercise(data):
 def fifth_exercise(data):
     return data[data[:, 3:].argmax() // (data.shape[1] - 3), :3]
 
+    # where data(data == data.max()) figo
+    # numpy.unreavel_index
+
 
 """
 7. Find the average windspeed in January for each location.
@@ -119,8 +122,10 @@ Bonus 1. Calculate the mean windspeed for each month in the dataset.  Treat
 
 def seventh_exercise(data, january_column=1, number_of_januaries=18):
     all_january = data[data[:, january_column] == 1, 3:]
+    # all_january = numpy.reshape(
+    # all_january, (all_january.size // (31 * 12), 31 * 12))
     all_january = numpy.reshape(
-        all_january, (all_january.size // (31 * 12), 31 * 12))
+        all_january, (-1, 31 * 12))  # -1 lo fa calculare a lui da solo
     return all_january.mean(axis=1)
 
 
@@ -144,13 +149,23 @@ Final boss: Calculate the mean windspeed for each month without using a for loop
 
 
 def ninth_exercise(data):
-    #years = data[-1, 0] - data[0, 0] + 1
-    # numpy.add.reduceat()
-    # for i in range(years):
-    #    indices = numpy.searchsorted(
-    #        years, (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12))
+    """
+    days_data = data[, 2]
+    days_data_copy = days_data.copy()
+    days_data_copy = numpy.roll(days_data_copy, -1)
+    month_indices = numpy.argwhere(days_data > days_data_copy)
+    """
+    months = ((data[:, 0] - 61) * 12 + data[:, 1] -
+              1)  # creo indice unico per ogni mese a partire da 0
+    month_indices = numoy.searchsorted(months, numpy.arange(months[-1] + 2))
 
-    return 'ciao'  # [month.mean() from month in ]
+    monthly_loc_totals = add.reduceat(data[:, 3:], month_indices[:-1])
+
+    monthly_totals = monthly_loc_totals.sum(axis=1)
+    month_days = month_indices[1:] - month_indices[:-1]
+    measurement_count = month_days * 12
+    mean = monthly_totals / measurement_count
+    return mean  # vedere se tutto è esatto
 
 
 if __name__ == '__main__':
