@@ -157,9 +157,9 @@ def ninth_exercise(data):
     """
     months = ((data[:, 0] - 61) * 12 + data[:, 1] -
               1)  # creo indice unico per ogni mese a partire da 0
-    month_indices = numoy.searchsorted(months, numpy.arange(months[-1] + 2))
+    month_indices = numpy.searchsorted(months, numpy.arange(months[-1] + 2))
 
-    monthly_loc_totals = add.reduceat(data[:, 3:], month_indices[:-1])
+    monthly_loc_totals = numpy.add.reduceat(data[:, 3:], month_indices[:-1])
 
     monthly_totals = monthly_loc_totals.sum(axis=1)
     month_days = month_indices[1:] - month_indices[:-1]
